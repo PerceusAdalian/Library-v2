@@ -133,6 +133,7 @@ li {
     color: var(--links__accent-color);
     font-weight: bold;
     padding: 8px;
+    cursor: pointer;
 }
 
 .nav__link--primary {
@@ -225,6 +226,10 @@ li {
 .menu__link {
     color: var(--links__accent-color);
     font-size: 40px;
+}
+
+.menu__link:hover:not(.no-cursor) {
+    cursor: pointer;
 }
 
 .menu__list {
@@ -532,14 +537,20 @@ p {
 }
 
 .book__title {
+    display: inline-block;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    text-align: left;
     color: var(--links__accent-color);
     font-size: 20px;
     margin-bottom: 8px;
+    cursor: not-allowed;
 }
 
 .book__title:hover {
     text-decoration: underline;
-    cursor: not-allowed;
     opacity: 0.6;
 }
 
@@ -559,8 +570,18 @@ p {
     margin-bottom: 24px;
     padding: 8px 48px 8px 48px;
     background-color: var(--bg-content);
-    border: 2px solid var(--accent-color-bg-dark);
+    border: transparent;
+    box-shadow: 0 4px 0 var(--accent-color-bg-dark);
     border-radius: 32px;
+    transition: color 0.3s ease-in, box-shadow 0.3s ease-out, transform 0.25s ease-out;
+}
+
+.books__sorter:focus {
+    transform: scale(1.1);
+    box-shadow: 0 8px 4px var(--accent-color-bg-dark);
+    outline: none;
+    color: var(--accent-color-bg-dark);
+    font-weight: bold;
 }
 
 /* EXPLORE */

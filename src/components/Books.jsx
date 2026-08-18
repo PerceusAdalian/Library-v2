@@ -32,7 +32,7 @@ const Books = () => {
     const [filter, setFilter] = useState("");
 
     function sortBooks(list, filterValue) {
-        const sorted = [...list]; // never mutate state directly — work on a copy
+        const sorted = [...list];
 
         if (filterValue === "LOW_TO_HIGH") {
             sorted.sort((a, b) => a.originalPrice - b.originalPrice);
@@ -58,35 +58,44 @@ const Books = () => {
     }
 
     return (
-        <section className="books">
-            <select className="books__filter" value={filter} onChange={handleFilterChange}>
-                <option value="">Sort by...</option>
-                <option value="LOW_TO_HIGH">Price: Low to High</option>
-                <option value="HIGH_TO_LOW">Price: High to Low</option>
-                <option value="SALE">On Sale</option>
-                <option value="RATING">Rating</option>
-            </select>
+        <div className="container">
+            <div className="row">
+                <div className="books__header">
+                    <h2 className="section__title">
+                        Featured <span className="text--blue">Books</span>
+                    </h2>
+                    <select className="books__sorter" value={filter} onChange={handleFilterChange}>
+                        <option value="">Sort by...</option>
+                        <option value="LOW_TO_HIGH">Price: Low to High</option>
+                        <option value="HIGH_TO_LOW">Price: High to Low</option>
+                        <option value="SALE">On Sale</option>
+                        <option value="RATING">Rating</option>
+                    </select>
+                </div>
 
-            <div className="books__rendered">
-                {books.map((book) => (
-                    <div className="book" key={book.id}>
-                        <figure className="book__card--wrapper">
-                            <img src={book.url} alt={book.title} className="book__card" />
-                        </figure>
-                        <div className="book__description">
-                            <a className="book__title">{book.title}</a>
-                            <div className="book__ratings">{generateRatingStars(book.rating)}</div>
-                            <div className="book__price">
-                                <PriceDisplay
-                                    originalPrice={book.originalPrice}
-                                    salePrice={book.salePrice}
-                                />
+                <div className="books__rendered books">
+                    {books.map((book) => (
+                        <div className="book" key={book.id}>
+                            <figure className="book__card--wrapper">
+                                <img src={book.url} alt={book.title} className="book__card" />
+                            </figure>
+                            <div className="book__description">
+                                <button type="button" className="book__title">
+                                    {book.title}
+                                </button>
+                                <div className="book__ratings">{generateRatingStars(book.rating)}</div>
+                                <div className="book__price">
+                                    <PriceDisplay
+                                        originalPrice={book.originalPrice}
+                                        salePrice={book.salePrice}
+                                    />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </section>
+        </div>
     );
 };
 

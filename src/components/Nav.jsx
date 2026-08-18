@@ -16,6 +16,7 @@ const Nav = () => {
                     <li><a class="nav__link link__hover-effect">Home</a></li>
                     <li><a class="nav__link link__hover-effect">Contact</a></li>
                     <li><a href="#featured" class="nav__link nav__link--primary">Books</a></li>
+                    <li><a href="/cart" className="nav__link"><i class="fa-solid fa-cart-shopping"></i></a></li>
                 </ul>
                 <div class="menu__container">
                     <a class="btn__menu" onClick={() => setMenuOpen(true)}>
@@ -34,6 +35,9 @@ const Nav = () => {
                             </li>
                             <li class="menu__list">
                                 <a class="menu__link no-cursor" onClick={() => setMenuOpen(false)}>Contacts</a>
+                            </li>
+                            <li class="menu__list">
+                                <a href="/cart" className="menu__link no-cursor" onClick={() => setMenuOpen(false)}>Shopping Cart</a>
                             </li>
                         </ul>
                     </div>
