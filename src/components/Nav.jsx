@@ -12,35 +12,37 @@ const Nav = () => {
                         <span class="logo__text">Library</span>
                     </a>
                 </figure>
-                <ul class="nav__links">
-                    <li><a class="nav__link link__hover-effect">Home</a></li>
-                    <li><a class="nav__link link__hover-effect">Contact</a></li>
-                    <li><a href="#featured" class="nav__link nav__link--primary">Books</a></li>
-                    <li><a href="/cart" className="nav__link"><i class="fa-solid fa-cart-shopping"></i></a></li>
-                </ul>
-                <div class="menu__container">
-                    <a class="btn__menu" onClick={() => setMenuOpen(true)}>
-                        <i class="fas fa-bars"></i>
-                    </a>
-                    <div class="menu__backdrop">
-                        <a class="btn__menu btn__menu--close" onClick={() => setMenuOpen(false)}>
-                            <i class="fas fa-times"></i>
+                <div className="nav__links--wrapper">
+                    <ul class="nav__links">
+                        <li><a href="/" class="nav__link link__hover-effect">Home</a></li>
+                        <li><a class="nav__link link__hover-effect">Contact</a></li>
+                        <li><a href="/vault" class="nav__link nav__link--primary">Books</a></li>
+                    </ul>
+                    <div class="menu__container">
+                        <a class="btn__menu" onClick={() => setMenuOpen(true)}>
+                            <i class="fas fa-bars"></i>
                         </a>
-                        <ul class="menu__links">
-                            <li class="menu__list">
-                                <a class="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Home</a>
-                            </li>
-                            <li class="menu__list">
-                                <a href="#featured" class="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Books</a>
-                            </li>
-                            <li class="menu__list">
-                                <a class="menu__link no-cursor" onClick={() => setMenuOpen(false)}>Contacts</a>
-                            </li>
-                            <li class="menu__list">
-                                <a href="/cart" className="menu__link no-cursor" onClick={() => setMenuOpen(false)}>Shopping Cart</a>
-                            </li>
-                        </ul>
+                        <div class="menu__backdrop">
+                            <a class="btn__menu btn__menu--close" onClick={() => setMenuOpen(false)}>
+                                <i class="fas fa-times"></i>
+                            </a>
+                            <ul class="menu__links">
+                                <li class="menu__list">
+                                    <a href="/" class="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Home</a>
+                                </li>
+                                <li class="menu__list">
+                                    <a href="/vault" class="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Books</a>
+                                </li>
+                                <li class="menu__list">
+                                    <a class="menu__link no-cursor" onClick={() => setMenuOpen(false)}>Contacts</a>
+                                </li>
+                                <li class="menu__list">
+                                    <a href="/cart" className="menu__link no-cursor" onClick={() => setMenuOpen(false)}>Shopping Cart</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+                    <a href="/cart" className="cart"><i class="fa-solid fa-cart-shopping"></i></a>
                 </div>
             </div>
         </nav>
