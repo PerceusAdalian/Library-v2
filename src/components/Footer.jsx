@@ -4,21 +4,21 @@ const Footer = () =>
 {
     return (
         <footer id="footer">
-            <div class="container">
-                <div class="row">
+            <div className="container">
+                <div className="row">
                     <figure>
-                    <a href="#" class="logo__figure"><i class="fa-solid fa-book logo"></i><span class="logo__text">Library</span></a>
+                    <a href="#" className="logo__figure"><i className="fa-solid fa-book logo"></i><span className="logo__text">Library</span></a>
                     </figure>
-                    <p class="moto text--blue">
+                    <p className="moto text--blue">
                         Reading Made Accessible
                     </p>
-                    <div class="footer__list">
-                       <a href="#" class="footer__link">Home</a> 
-                       <a href="#highlights" class="footer__link">About</a> 
-                       <a href="#featured" class="footer__link">Books</a> 
-                       <a class="footer__link no-cursor">Contact</a> 
+                    <div className="footer__list">
+                       <a href="/" className="footer__link">Home</a> 
+                       <a href="#highlights" className="footer__link">About</a> 
+                       <a href="#featured" className="footer__link">Books</a> 
+                       <a className="footer__link no-cursor">Contact</a> 
                     </div>
-                    <div class="footer__copyright"><span class="text--blue">&copy;</span> Copyright Library 2026</div>
+                    <div className="footer__copyright"><span className="text--blue">&copy;</span> Copyright Library 2026</div>
                 </div>
             </div>
         </footer>

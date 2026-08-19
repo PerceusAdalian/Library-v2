@@ -512,7 +512,7 @@ p {
 
 .books {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 24px;
     justify-content: center;
     border: 2px dotted var(--accent-color-bg-dark);
@@ -622,6 +622,7 @@ p {
     background-color: var(--page-bg);
     border-radius: 32px;
     border: 2px solid var(--border-accent);
+    filter: drop-shadow(0 0 32px var(--accent-color-bg));
 }
 
 .explore__description p {
@@ -630,15 +631,10 @@ p {
     margin-top: 16px;
     border-radius: 16px;
     background-color: var(--bg-content);
-    box-shadow: 4px 8px var(--accent-color-bg-dark);
+    box-shadow: 0 4px var(--accent-color-bg-dark);
     transform: translateY(-16px);
     transition: all 0.3s ease;
     cursor: default;
-}
-
-.explore__description:hover p {
-    transform: scale(1.05) translateY(-16px);
-    box-shadow: 0 8px 8px var(--accent-color-bg-dark);
 }
 
 /* FOOTER */
@@ -692,7 +688,55 @@ p {
     animation: rotate 1s linear infinite;
 }
 
+/* VAULT */
+#vault {
+    padding: 4vw 0 4vw 0;
+    border-bottom: 2px solid var(--border-accent);
+}
+
+.books__404 img {
+    max-width: 32vw;
+}
+
+.books__404 {
+    display: flex;
+    flex-direction: column;
+}
+
+.books__404--text {
+    display: inline-flex;
+    text-align: center;
+    flex-direction: row;
+    font-size: 32px; 
+    font-weight: bold; 
+    margin-top: 32px; 
+    margin-bottom: 32px;
+    color: var(--text-default);
+    animation: blink 0.75s ease-in-out infinite alternate;
+}
+
+.books__selectors {
+    display: flex;
+}
+
+.books__search {
+    width: 50%;
+}
+
+input.books__sorter:focus {
+    font-weight: 700;
+}
+
 /* ANIMATIONS */
+@keyframes blink {
+    0% {
+        filter: drop-shadow(0 0 0 transparent);
+    }
+    100% {
+        filter: drop-shadow(0 0 8px var(--accent-color-bg));
+    }
+}
+
 @keyframes rotate {
     0% {
         transform: rotate(0deg);
@@ -742,6 +786,20 @@ p {
         transform: scale(1);
     }
     
+}
+
+@media (max-width: 980px) {
+    .books__header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    .books__search,
+    .books__sorter {
+        align-items: center;
+        align-content: center;
+    }
 }
 
 /* SMALL PHONES, TABLETS, LARGE SMARTPHONES */
