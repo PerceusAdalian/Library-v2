@@ -22,7 +22,11 @@ const Nav = () => {
                         <li><Link to="/" className="nav__link link__hover-effect">Home</Link></li>
                         <li><Link className="nav__link link__hover-effect">Contact</Link></li>
                         <li><Link to="/vault" className="nav__link nav__link--primary">Vault</Link></li>
+                        <Link to="/cart" className="cart">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </Link>
                     </ul>
+                    
                     <div className="menu__container">
                         <button type="button" className="btn__menu" onClick={() => setMenuOpen(true)}>
                             <i className="fas fa-bars"></i>

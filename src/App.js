@@ -17,8 +17,8 @@ function App() {
   return (
     <Router basename="/Library-v2">
       <div className="App">
-        <Nav />
         <ScrollToTop />
+        <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/vault" element={<Vault />} />
