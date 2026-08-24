@@ -8,28 +8,38 @@ const Nav = () => {
         <nav>
             <div className={`nav__container${menuOpen ? ' menu--open' : ''}`}>
                 <figure>
-                    <a href="#footer" className="logo__figure">
+                    <Link to="#footer" className="logo__figure" onClick={() => 
+                        {
+                            const el = document.getElementById("footer");
+                            if (el) el.scrollIntoView({ behavior: "smooth" });
+                        }}>
                         <i className="fa-solid fa-book logo"></i>
                         <span className="logo__text">Library</span>
-                    </a>
+                    </Link>
                 </figure>
                 <div className="nav__links--wrapper">
                     <ul className="nav__links">
                         <li><Link to="/" className="nav__link link__hover-effect">Home</Link></li>
                         <li><Link className="nav__link link__hover-effect">Contact</Link></li>
-                        <li><Link to="/vault" className="nav__link nav__link--primary">Books</Link></li>
+                        <li><Link to="/vault" className="nav__link nav__link--primary">Vault</Link></li>
                     </ul>
                     <div className="menu__container">
-                        <Link className="btn__menu" onClick={() => setMenuOpen(true)}>
+                        <button type="button" className="btn__menu" onClick={() => setMenuOpen(true)}>
                             <i className="fas fa-bars"></i>
-                        </Link>
+                        </button>
                         <div className="menu__backdrop">
-                            <Link className="btn__menu btn__menu--close" onClick={() => setMenuOpen(false)}>
+                            <button type="button" className="btn__menu btn__menu--close" onClick={() => setMenuOpen(false)}>
                                 <i className="fas fa-times"></i>
-                            </Link>
+                            </button>
                             <ul className="menu__links">
                                 <li className="menu__list">
-                                    <Link to="/" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Home</Link>
+                                    <Link to="/" className="nav__link link__hover-effect" onClick={() => 
+                                        {
+                                            setMenuOpen(false);
+                                            window.scrollTo({ top: 0, behavior: "smooth" });
+                                        }}
+                                    > Home
+                                    </Link>
                                 </li>
                                 <li className="menu__list">
                                     <Link to="/vault" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Books</Link>
@@ -37,13 +47,9 @@ const Nav = () => {
                                 <li className="menu__list">
                                     <Link className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Contact</Link>
                                 </li>
-                                <li className="menu__list">
-                                    <Link to="/cart" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Shopping Cart</Link>
-                                </li>
                             </ul>
                         </div>
                     </div>
-                    <Link to="/cart" className="cart"><i className="fa-solid fa-cart-shopping"></i></Link>
                 </div>
             </div>
         </nav>

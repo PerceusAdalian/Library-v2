@@ -1019,6 +1019,18 @@ input.books__sorter:focus {
         align-items: center;
         align-content: center;
     }
+
+    .books__search {
+        width: 100%;
+    }
+
+    .book__wrapper--focus {
+        width: 100%;
+    }
+
+    .book__focus--description {
+        width: 60%;
+    }
 }
 
 /* SMALL PHONES, TABLETS, LARGE SMARTPHONES */
@@ -1041,6 +1053,28 @@ input.books__sorter:focus {
 
     .book {
         width: 50%;
+    }
+
+    header {
+        padding-bottom: 160px;
+    }
+
+    #featured, #discounted, #recent {
+        min-height: 0;
+        padding-top: 12vw;
+        padding-bottom: 12vw;
+    }
+
+    .book__focus--description {
+        width: 100%;
+    }
+
+    #related {
+        padding-top: 8vh;
+    }
+
+    #related .books {
+        transform: none;
     }
 }
 
@@ -1069,5 +1103,34 @@ input.books__sorter:focus {
     .menu__container {
         display: block;
     }
-}
 
+    .book__focus,
+    .book__focus--description {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .books__selected--top {
+        gap: 12px;
+    }
+
+    .books__selected--top .logo {
+        transform: scale(1.4);
+    }
+
+    .books__selected--top h1 {
+        font-size: 22px;
+    }
+
+    #related {
+        padding-top: 4vh;
+    }
+
+    #related .books {
+        transform: none;
+    }
+
+    .book {
+        width: 100%;
+    }
+}
