@@ -15,7 +15,7 @@ function BookInfoWithKey({ books }) {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/Library-v2">
       <div className="App">
         <Nav />
         <ScrollToTop />
