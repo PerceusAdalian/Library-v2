@@ -70,7 +70,6 @@ a {
 }
 
 .no-cursor {
-    cursor: not-allowed;
 }
 
 
@@ -98,7 +97,7 @@ img {
 
 .logo {
     transform: scale(2);
-    transition: 0.3s ease;
+    transition: 0.3s ease-out;
 }
 
 .logo__figure {
@@ -531,17 +530,62 @@ p {
     border-radius: 8px;
     overflow: hidden;
     transition: all 0.4s ease;
+    cursor: pointer;
 }
 
 .book__card:hover {
     box-shadow: 6px 8px var(--accent-color-bg-dark);
     transform: scale(1.05);
     border-radius: 16px;
-    cursor: not-allowed;
+}
+
+.book__card--special {
+    max-height: 360px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+    animation: book-card 0.6s 1.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    cursor: default;
 }
 
 .book__card--wrapper {
     margin-bottom: 8px;
+}
+
+.book__card--placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    max-height: 360px;
+    max-width: 240px;
+    aspect-ratio: 2 / 3;
+    background-color: var(--bg-content-accent);
+    border: 2px dashed var(--border-accent);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+}
+
+.book__card--placeholder--logo {
+    font-size: 32px;
+    color: var(--accent-color-bg-dark);
+}
+
+.book__card--placeholder span {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-default);
+}
+
+.book__card--loading-error {
+    font-size: 10px;
+    font-weight: lighter;
+    color: var(--text-default);
+    font-style: italic;
+    animation: blink 1.25s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 .book__description {
@@ -566,12 +610,13 @@ p {
     color: var(--links__accent-color);
     font-size: 20px;
     margin-bottom: 8px;
-    cursor: not-allowed;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .book__title:hover {
-    text-decoration: underline;
-    opacity: 0.6;
+    color: var(--accent-color-bg-dark);
+    font-weight: 700;
 }
 
 .book__ratings {
@@ -712,7 +757,7 @@ p {
     margin-top: 32px; 
     margin-bottom: 32px;
     color: var(--text-default);
-    animation: blink 0.75s ease-in-out infinite alternate;
+    animation: blink 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 .books__selectors {
@@ -727,13 +772,152 @@ input.books__sorter:focus {
     font-weight: 700;
 }
 
+/* BOOK PREVIEW */
+.books__selected--top {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 56px;
+    transition: all 0.3s ease;
+}
+
+.books__selected--top .logo {
+    transform: scale(2);
+    animation: fade-left 0.45s .8s ease-out backwards;
+}
+
+.books__selected--top a,
+.books__selected--top h1 {
+    margin: 0;
+    color: var(--links__accent-color);
+}
+
+.books__selected--top h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.book__wrapper--focus {
+    display: flex;
+    margin: 32px auto;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 55%;
+    transition: all 0.3s ease;
+}
+
+.book__focus {
+    display: flex;
+    flex-direction: column;
+    min-width: 260px;
+    animation: fade-right 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.book__focus .book__description {
+    animation: fade-down 0.5s 0.75s ease-out backwards;
+}
+
+.book__focus--description {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    min-width: 320px;
+    margin: 8px auto;
+    padding: 16px;
+    animation: fade-right 0.6s 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.book__focus--description h1 {
+    text-align: left;
+    font-weight: 400;
+    font-size: 24px;
+    margin: 0.5em auto;
+    padding: 0;
+    animation: fade-down 0.5s 0.75s ease-out backwards;
+}
+
+.book__focus--description p {
+    text-align: left;
+    font-weight: 400;
+    font-size: 15px;
+    margin-bottom: 1em;
+    animation: fade-down 0.5s 0.95s ease-out backwards;
+}
+
+.book__focus--description .divider {
+    padding-top: 0;
+}
+
+.add-to-cart {
+    margin: 1em auto;
+    animation: fade-down 0.5s 1s ease-out backwards;
+}
+
+
+/* RELATED BOOKS */
+#related {
+    padding: 14vh 0 0 0;
+    margin: 0 auto;
+    background-color: var(--bg-content);
+}
+
+#related .book {
+    max-width: 240px;
+}
+
+#related .books {
+    transform: scale(0.75);
+    transition: none;
+}
+
+#related .section__title {
+    margin: 0 auto;
+}
+
+/* MSC */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--border-accent);
+    font-size: 12px;
+    padding-top: 32px;
+    cursor: default;
+    width: 100%;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--border-accent);
+}
+
+.divider span {
+    padding: 0 10px;
+    color: var(--border-accent);
+    text-align: center;
+}
+
+.no-events {
+    pointer-events: none;
+    cursor: default;
+}
+
 /* ANIMATIONS */
 @keyframes blink {
     0% {
-        filter: drop-shadow(0 0 0 transparent);
+        text-shadow: 0 0 0 transparent;
+    }
+    50% {
+        text-shadow: 0 0 8px var(--accent-color-bg-dark);
     }
     100% {
-        filter: drop-shadow(0 0 8px var(--accent-color-bg));
+        text-shadow: 0 0 0 transparent;
     }
 }
 
@@ -756,13 +940,36 @@ input.books__sorter:focus {
     }
 }
 
-@keyframes fade-down {
+@keyframes fade-left {
     0% {
-        transform: translateY(0);
+        opacity: 0;
+        transform: translateX(32px);
     }
     100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-right {
+    0% {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateX(-56px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-16px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -786,6 +993,18 @@ input.books__sorter:focus {
         transform: scale(1);
     }
     
+}
+
+@keyframes book-card {
+    0% {
+        transform: scale(1);
+        box-shadow: 6px 8px 0px transparent;
+    }
+    100% {
+        transform: scale(1.05);
+        box-shadow: 6px 8px 0px var(--accent-color-bg-dark);
+        border-radius: 16px;
+    }
 }
 
 @media (max-width: 980px) {

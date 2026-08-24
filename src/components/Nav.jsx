@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -14,35 +15,35 @@ const Nav = () => {
                 </figure>
                 <div className="nav__links--wrapper">
                     <ul className="nav__links">
-                        <li><a href="/" className="nav__link link__hover-effect">Home</a></li>
-                        <li><a className="nav__link link__hover-effect">Contact</a></li>
-                        <li><a href="/vault" className="nav__link nav__link--primary">Books</a></li>
+                        <li><Link to="/" className="nav__link link__hover-effect">Home</Link></li>
+                        <li><Link className="nav__link link__hover-effect">Contact</Link></li>
+                        <li><Link to="/vault" className="nav__link nav__link--primary">Books</Link></li>
                     </ul>
                     <div className="menu__container">
-                        <a className="btn__menu" onClick={() => setMenuOpen(true)}>
+                        <Link className="btn__menu" onClick={() => setMenuOpen(true)}>
                             <i className="fas fa-bars"></i>
-                        </a>
+                        </Link>
                         <div className="menu__backdrop">
-                            <a className="btn__menu btn__menu--close" onClick={() => setMenuOpen(false)}>
+                            <Link className="btn__menu btn__menu--close" onClick={() => setMenuOpen(false)}>
                                 <i className="fas fa-times"></i>
-                            </a>
+                            </Link>
                             <ul className="menu__links">
                                 <li className="menu__list">
-                                    <a href="/" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Home</a>
+                                    <Link to="/" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Home</Link>
                                 </li>
                                 <li className="menu__list">
-                                    <a href="/vault" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Books</a>
+                                    <Link to="/vault" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Books</Link>
                                 </li>
                                 <li className="menu__list">
-                                    <a className="menu__link no-cursor" onClick={() => setMenuOpen(false)}>Contacts</a>
+                                    <Link className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Contact</Link>
                                 </li>
                                 <li className="menu__list">
-                                    <a href="/cart" className="menu__link no-cursor" onClick={() => setMenuOpen(false)}>Shopping Cart</a>
+                                    <Link to="/cart" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Shopping Cart</Link>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <a href="/cart" className="cart"><i className="fa-solid fa-cart-shopping"></i></a>
+                    <Link to="/cart" className="cart"><i className="fa-solid fa-cart-shopping"></i></Link>
                 </div>
             </div>
         </nav>

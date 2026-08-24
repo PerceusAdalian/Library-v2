@@ -1,6 +1,7 @@
 import React from "react";
 import { books } from "../data.js";
 import { generateRatingStars, PriceDisplay } from "../utils/bookHelpers.jsx";
+import { Link } from "react-router-dom";
 
 const Featured = () => {
     const featuredBooks = books
@@ -20,12 +21,14 @@ const Featured = () => {
                     {featuredBooks.map((book) => (
                         <div className="book" key={book.id}>
                             <figure className="book__card--wrapper">
-                                <img src={book.url} alt={book.title} className="book__card" />
+                                <Link to={`/vault/${book.id}`}>
+                                    <img src={book.url} alt={book.title} className="book__card" />
+                                </Link>
                             </figure>
                             <div className="book__description">
-                                <button type="button" className="book__title">
+                                <Link to={`/vault/${book.id}`} className="book__title">
                                     {book.title}
-                                </button>
+                                </Link>
                                 <div className="book__ratings">{generateRatingStars(book.rating)}</div>
                                 <div className="book__price">
                                     <PriceDisplay

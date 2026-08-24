@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { books as initialBooks } from "../data.js";
-import { generateRatingStars, PriceDisplay } from "../utils/bookHelpers.jsx";
+import { generateRatingStars, PriceDisplay, BookPoster } from "../utils/bookHelpers.jsx";
 import img from "../assets/404.svg";
+import { Link } from 'react-router-dom';
 
 export default function Vault() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -83,12 +84,14 @@ export default function Vault() {
                                 {displayedBooks.map((book) => (
                                   <div className="book" key={book.id}>
                                     <figure className="book__card--wrapper">
-                                      <img src={book.url} alt={book.title} className="book__card" />
+                                        <Link to={`/vault/${book.id}`}>
+                                            <BookPoster book={book} />
+                                        </Link>
                                     </figure>
                                     <div className="book__description">
-                                      <button type="button" className="book__title">
-                                        {book.title}
-                                      </button>
+                                      <Link to={`/vault/${book.id}`} className="book__title">
+                                          {book.title}
+                                      </Link>
                                       <div className="book__ratings">{generateRatingStars(book.rating)}</div>
                                       <div className="book__price">
                                         <PriceDisplay

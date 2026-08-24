@@ -1,0 +1,90 @@
+import React from 'react'
+import { Link, useParams } from "react-router-dom";
+import { generateRatingStars, PriceDisplay, BookPoster } from "../utils/bookHelpers.jsx";
+import Related from '../components/Related.jsx';
+
+export default function BookInfo({ books }) {
+    const { id } = useParams();
+    const book = books.find((b) => String(b.id) === id);
+
+    if (!book) {
+        return (
+            <div id="books__body">
+                <div className="books__main">
+                    <div className="books__container">
+                        <div className="row">
+                            <div className="books__selected--top">
+                                <Link to="/vault">
+                                    <i className="fa-solid fa-arrow-left logo"></i>
+                                </Link>
+                            </div>
+                            <p>That book doesn't exist.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div id="books__body">
+            <div className="books__main">
+              <section id="vault">
+                <div className="books__container">
+                    <div className="row">
+                      <div className="row">
+                        <div className="books__selected--top">
+                            <Link to="/vault">
+                                <i className="fa-solid fa-arrow-left logo"></i>
+                            </Link>
+                            <h1 className="section__title">Book Preview: <span className="text--blue">{book.title}</span></h1>
+                        </div>
+                      </div>
+
+                      <div className="book__wrapper--focus">
+
+                        <div className="book__focus">
+                          <div className="book" key={book.id}>
+                            <figure className="book__card--wrapper">
+                                <Link to={`/vault/${book.id}`}>
+                                    <BookPoster book={book} isSpecial={"true"} />
+                                </Link>
+                            </figure>
+                            <div className="book__description">
+                              <div className="book__title">
+                                  {book.title}
+                              </div>
+                              <div className="book__ratings">{generateRatingStars(book.rating)}</div>
+                              <div className="book__price">
+                                <PriceDisplay
+                                  originalPrice={book.originalPrice}
+                                  salePrice={book.salePrice}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="book__focus--description">
+                          <div className="divider"></div>
+                          <h1>Description</h1>
+                          <p>
+                            Author: <span className="text--blue" style={{fontWeight: '700'}}>{book.author}</span> | Genre: <span className="text--blue" style={{fontWeight: '700'}}>{book.genre}</span>
+                            <br />
+                            Release Year: <span className="text--blue" style={{fontWeight: '700'}}>{book.publishedYear}</span> | Pages: <span className="text--blue" style={{fontWeight: '700'}}>{book.pages}</span>
+                            <br />
+                            Brief: <span className="text--blue" style={{fontWeight: '700'}}>{book.description}</span>
+                          </p>
+                          <div className="divider"></div>
+                          <div className="add-to-cart">
+                            <button className="btn">Add to Cart</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <Related book={book} />
+                </div>
+              </section>
+            </div>
+        </div>
+    );
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { books as initialBooks } from "../data.js";
-import { generateRatingStars, PriceDisplay } from "../utils/bookHelpers.jsx";
+import { generateRatingStars, PriceDisplay, BookPoster } from "../utils/bookHelpers.jsx";
+import { Link } from "react-router-dom";
 
 const Books = () => {
     const [books, setBooks] = useState(initialBooks);
@@ -53,12 +54,14 @@ const Books = () => {
                         {books.map((book) => (
                             <div className="book" key={book.id}>
                                 <figure className="book__card--wrapper">
-                                    <img src={book.url} alt={book.title} className="book__card" />
+                                    <Link to={`/vault/${book.id}`}>
+                                        <BookPoster book={book} />
+                                    </Link>
                                 </figure>
                                 <div className="book__description">
-                                    <button type="button" className="book__title">
+                                    <Link to={`/vault/${book.id}`} className="book__title">
                                         {book.title}
-                                    </button>
+                                    </Link>
                                     <div className="book__ratings">{generateRatingStars(book.rating)}</div>
                                     <div className="book__price">
                                         <PriceDisplay
