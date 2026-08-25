@@ -51,7 +51,7 @@ export default function BookInfo({ books }) {
                                 </Link>
                             </figure>
                             <div className="book__description">
-                              <div className="book__title">
+                              <div className="book__title--special">
                                   {book.title}
                               </div>
                               <div className="book__ratings">{generateRatingStars(book.rating)}</div>
