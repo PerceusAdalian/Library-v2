@@ -3,13 +3,11 @@ import React, { useState, useEffect } from 'react'
 export default function ContactModal() {
     const [isOpen, setIsOpen] = useState(false)
 
-    // Lock body scroll while the modal is open
     useEffect(() => {
         document.body.style.overflow = isOpen ? 'hidden' : ''
         return () => { document.body.style.overflow = '' }
     }, [isOpen])
 
-    // Close on Escape
     useEffect(() => {
         if (!isOpen) return
         const handleKeyDown = (e) => {
@@ -20,13 +18,9 @@ export default function ContactModal() {
     }, [isOpen])
 
     const handleBackdropClick = (e) => {
-        // Only close if the click was on the overlay itself, not the content
         if (e.target === e.currentTarget) setIsOpen(false)
     }
 
-    // Listen for clicks anywhere in the document on ".contact-trigger" elements
-    // (nav + footer buttons) via event delegation, so this modal's state stays
-    // local while still being openable from multiple places in the DOM.
     useEffect(() => {
         const handleTriggerClick = (e) => {
             if (e.target.closest('.contact-trigger')) {
@@ -55,7 +49,7 @@ export default function ContactModal() {
             message || '(no message)'
         ].filter(Boolean)
 
-        const mailto = `mailto:davidmwilly@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`
+        const mailto = `mailto:noemail@noemail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`
         window.location.href = mailto
         setIsOpen(false)
     }
@@ -80,7 +74,7 @@ export default function ContactModal() {
                     </figure>
                     <h2 className="section__title">Let's Connect</h2>
                     <p className="background--paragraph">
-                        I'd love to hear from you!
+                        We'd love to hear from you!
                     </p>
                     <p className="background--paragraph">
                         Go ahead and fill this out. You'll be redirected to an email app of your choice, ready to send.
@@ -97,14 +91,8 @@ export default function ContactModal() {
                     </form>
                     <div className="divider"><span>or reach out directly</span></div>
                     <div className="modal-links">
-                        <a href="mailto:davidmwilly@gmail.com" className="nav__icon tooltip mailto-trigger" data-tooltip="Via E-Mail" aria-label="Email">
+                        <a href="mailto:noemail@noemail.com" className="nav__icon  mailto-trigger" aria-label="Email">
                             <i className="fa-solid fa-envelope"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/perceus-willy-a71392333/" className="nav__icon tooltip" data-tooltip="Via LinkedIn" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                            <i className="fa-brands fa-linkedin"></i>
-                        </a>
-                        <a href="https://github.com/PerceusAdalian" className="nav__icon tooltip" data-tooltip="Via GitHub" target="_blank" rel="noreferrer" aria-label="GitHub">
-                            <i className="fa-brands fa-github"></i>
                         </a>
                     </div>
                 </div>
