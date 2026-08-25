@@ -539,6 +539,10 @@ p {
     border-radius: 16px;
 }
 
+.book__card:hover.book__card {
+    margin-bottom: 32px;
+}
+
 .book__card--special {
     max-height: 360px;
     margin-bottom: 16px;
