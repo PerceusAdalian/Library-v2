@@ -7,6 +7,7 @@ import Vault from './pages/Vault';
 import { books } from "./data";
 import BookInfo from './pages/BookInfo';
 import ScrollToTop from './components/ScrollToTop';
+import ContactModal from './components/ContactModal';
 
 function BookInfoWithKey({ books }) {
     const { id } = useParams();
@@ -19,6 +20,7 @@ function App() {
       <div className="App">
         <ScrollToTop />
         <Nav />
+        <ContactModal />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/vault" element={<Vault />} />

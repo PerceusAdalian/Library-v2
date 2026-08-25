@@ -20,10 +20,10 @@ const Nav = () => {
                 <div className="nav__links--wrapper">
                     <ul className="nav__links">
                         <li><Link to="/" className="nav__link link__hover-effect">Home</Link></li>
-                        <li><Link className="nav__link link__hover-effect">Contact</Link></li>
+                        <li><a href="#contact" className="nav__link link__hover-effect contact-trigger">Contact</a></li>
                         <li><Link to="/vault" className="nav__link nav__link--primary">Vault</Link></li>
                         <Link to="/cart" className="cart">
-                            <i class="fa-solid fa-cart-shopping"></i>
+                            <i className="fa-solid fa-cart-shopping"></i>
                         </Link>
                     </ul>
                     
@@ -37,7 +37,7 @@ const Nav = () => {
                             </button>
                             <ul className="menu__links">
                                 <li className="menu__list">
-                                    <Link to="/" className="nav__link link__hover-effect" onClick={() => 
+                                    <Link to="/" className="menu__link link__hover-effect" onClick={() => 
                                         {
                                             setMenuOpen(false);
                                             window.scrollTo({ top: 0, behavior: "smooth" });
@@ -49,7 +49,7 @@ const Nav = () => {
                                     <Link to="/vault" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Books</Link>
                                 </li>
                                 <li className="menu__list">
-                                    <Link className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Contact</Link>
+                                    <a href="#contact" className="menu__link link__hover-effect contact-trigger" onClick={() => setMenuOpen(false)}>Contact</a>
                                 </li>
                             </ul>
                         </div>
