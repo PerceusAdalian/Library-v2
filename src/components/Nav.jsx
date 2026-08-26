@@ -49,6 +49,9 @@ const Nav = () => {
                                     <Link to="/vault" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Books</Link>
                                 </li>
                                 <li className="menu__list">
+                                    <Link to="/cart" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Shopping Cart</Link>
+                                </li>
+                                <li className="menu__list">
                                     <a href="#contact" className="menu__link link__hover-effect contact-trigger" onClick={() => setMenuOpen(false)}>Contact</a>
                                 </li>
                             </ul>
