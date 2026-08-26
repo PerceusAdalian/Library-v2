@@ -525,6 +525,7 @@ p {
 }
 
 .book__card {
+    display: block;
     max-height: 360px;
     margin-bottom: 16px;
     border-radius: 8px;
@@ -545,11 +546,15 @@ p {
 
 .book__card--special {
     max-height: 360px;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     border-radius: 10px;
     overflow: hidden;
     animation: book-card 0.6s 1.1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     cursor: default;
+}
+
+.book__card--special.book__card--placeholder {
+    margin-bottom: 32px;
 }
 
 .book__card--wrapper {
@@ -921,37 +926,33 @@ input.books__sorter:focus {
     justify-content: center;
     align-items: center;
     z-index: 3000;
-    opacity: 0;
+    background: transparent;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+    transition: background 0.4s ease, visibility 0s linear 0.4s;
 }
 
 .modal-overlay.active {
-    opacity: 1;
-    background: transparent;
+    background: rgba(20, 20, 20, 0.8); /* swap in your --border-accent RGB */
     visibility: visible;
     pointer-events: auto;
-    transition: opacity 0.4s ease, visibility 0s linear 0s;
+    transition: background 0.4s ease, visibility 0s linear 0s;
 }
 
 .modal-content {
-    opacity: 1;
     position: relative;
     border: 2px solid var(--accent-color-bg-dark);
-    filter: drop-shadow(0 8px 8px var(--accent-color-bg-dark));
     background-color: var(--bg-content);
     text-align: center;
     color: var(--text-default);
     border-radius: 20px;
-    padding: 0 40px;
+    padding: 40px;
     max-width: 400px;
     width: 90%;
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-in, opacity 0.7s ease, padding 0.3s ease;
     cursor: default;
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .modal-content p {
@@ -963,9 +964,10 @@ input.books__sorter:focus {
 }
 
 .modal-overlay.active .modal-content {
+    visibility: visible;
     opacity: 1;
-    max-height: 2000px;
-    padding: 40px;
+    transform: scale(1);
+    animation: glow 0.25s 0.2s linear both;
 }
 
 .modal-close {
@@ -1141,6 +1143,15 @@ input.books__sorter:focus {
 }
 
 /* ANIMATIONS */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 0 0 transparent;
+    }
+    100% {
+        box-shadow: 0 0 24px 4px var(--accent-color-bg-dark);
+    }
+}
+
 @keyframes blink {
     0% {
         text-shadow: 0 0 0 transparent;
@@ -1266,7 +1277,7 @@ input.books__sorter:focus {
     }
 
     .book__card--special {
-        max-width: 300px;
+        max-width: 240px;
         min-height: 240px;
     }
 }
@@ -1274,10 +1285,15 @@ input.books__sorter:focus {
 /* TABLET */
 @media (max-width: 980px) {
 
+    .book__description {
+        max-width: 280px;
+    }
+
     .book__wrapper--focus {
+        display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
         width: 100%;
+        align-items: center;
     }
 
     .book__focus {
@@ -1285,8 +1301,13 @@ input.books__sorter:focus {
     }
 
     .book__card--special {
-        max-width: 280px;
+        max-width: 240px;
         min-height: 240px;
+    }
+
+    .book__card {
+        max-width: 240px;
+        display: block;
     }
 
     .book__title--special {
@@ -1324,14 +1345,15 @@ input.books__sorter:focus {
         margin: 12px 20px;
     }
 
-    .book__focus {
-        max-width: 320px;
-    }
-
     .book__card--special {
         max-width: 260px;
         min-width: 220px;
         min-height: 220px;
+    }
+
+    .book__focus {
+        max-width: 320px;
+        margin: 0 auto;
     }
 
     .header__description {
@@ -1365,7 +1387,7 @@ input.books__sorter:focus {
     }
 
     .book__focus--description {
-        width: 100%;
+        max-width: 100%;
     }
 
     #related {
@@ -1374,6 +1396,10 @@ input.books__sorter:focus {
 
     #related .books {
         transform: none;
+    }
+
+    .books__search {
+        font-size: 10px;
     }
 }
 
@@ -1428,7 +1454,7 @@ input.books__sorter:focus {
     }
 
     .books__selected--top {
-        gap: 12px;
+        gap: 8px;
     }
 
     .books__selected--top .logo {
@@ -1449,5 +1475,14 @@ input.books__sorter:focus {
 
     .book {
         width: 100%;
+    }
+
+    .books__search {
+        font-size: 8px;
+    }
+
+    
+    .book__focus--description {
+        max-width: 90%;
     }
 }
