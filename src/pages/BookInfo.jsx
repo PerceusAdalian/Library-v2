@@ -42,7 +42,6 @@ export default function BookInfo({ books }) {
                       </div>
 
                       <div className="book__wrapper--focus">
-
                         <div className="book__focus">
                           <div className="book" key={book.id}>
                             <figure className="book__card--wrapper">
