@@ -1280,10 +1280,11 @@ input.books__sorter:focus {
         max-width: 240px;
         min-height: 240px;
     }
+
 }
 
 /* TABLET */
-@media (max-width: 980px) {
+@media (max-width: 980px) {  
 
     .book__description {
         max-width: 280px;
@@ -1305,7 +1306,7 @@ input.books__sorter:focus {
         min-height: 240px;
     }
 
-    .book__card {
+    .book__card:not(.book__card--placeholder) {
         max-width: 240px;
         display: block;
     }
