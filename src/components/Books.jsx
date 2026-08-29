@@ -2,10 +2,27 @@ import React, { useState } from "react";
 import { books as initialBooks } from "../data.js";
 import { generateRatingStars, PriceDisplay, BookPoster } from "../utils/bookHelpers.jsx";
 import { Link } from "react-router-dom";
+import { useCart } from "../components/CartContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping, faCheckToSlot } from "@fortawesome/free-solid-svg-icons";
 
 const Books = () => {
     const [books, setBooks] = useState(initialBooks);
     const [filter, setFilter] = useState("");
+    const { addToCart } = useCart();
+    const [addedIds, setAddedIds] = useState(new Set());
+
+    function handleAddToCart(bookId) {
+        addToCart(bookId, 1);
+        setAddedIds((prev) => new Set(prev).add(bookId));
+        setTimeout(() => {
+            setAddedIds((prev) => {
+                const next = new Set(prev);
+                next.delete(bookId);
+                return next;
+            });
+        }, 700);
+    }
 
     function sortBooks(list, filterValue) {
         const sorted = [...list];
@@ -34,6 +51,7 @@ const Books = () => {
     }
 
     return (
+        
         <section id="recent">
             <div className="container">
                 <div className="row">
@@ -51,27 +69,43 @@ const Books = () => {
                     </div>
 
                     <div className="books__rendered books">
-                        {books.map((book) => (
-                            <div className="book" key={book.id}>
-                                <figure className="book__card--wrapper">
-                                    <Link to={`/vault/${book.id}`}>
-                                        <BookPoster book={book} />
-                                    </Link>
-                                </figure>
-                                <div className="book__description">
-                                    <Link to={`/vault/${book.id}`} className="book__title">
-                                        {book.title}
-                                    </Link>
-                                    <div className="book__ratings">{generateRatingStars(book.rating)}</div>
-                                    <div className="book__price">
-                                        <PriceDisplay
-                                            originalPrice={book.originalPrice}
-                                            salePrice={book.salePrice}
-                                        />
+                        {books.map((book) => {
+                            if (addedIds.has(book.id)) console.log("addedIds has:", book.id);
+
+                            return (
+                                <div className="book" key={book.id}>
+                                    <figure className="book__card--wrapper">
+                                        <Link to={`/vault/${book.id}`}>
+                                            <BookPoster book={book} />
+                                        </Link>
+                                    </figure>
+                                    <div className="book__description">
+                                        <Link to={`/vault/${book.id}`} className="book__title">
+                                            {book.title}
+                                        </Link>
+                                        <div className="book__ratings">{generateRatingStars(book.rating)}</div>
+                                        <div className="book__price--row">
+                                            <div className="book__price">
+                                                <PriceDisplay
+                                                    originalPrice={book.originalPrice}
+                                                    salePrice={book.salePrice}
+                                                />
+                                            </div>
+                                            <button className="btn btn__add-to-cart" onClick={() => handleAddToCart(book.id)}>
+                                                <FontAwesomeIcon
+                                                    icon={faCartShopping}
+                                                    className={`btn__icon${addedIds.has(book.id) ? " btn__icon--hidden" : ""}`}
+                                                />
+                                                <FontAwesomeIcon
+                                                    icon={faCheckToSlot}
+                                                    className={`btn__icon btn__icon--check${addedIds.has(book.id) ? " btn__icon--visible" : ""}`}
+                                                />
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </div>

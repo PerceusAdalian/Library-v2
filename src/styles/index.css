@@ -604,6 +604,12 @@ p {
     border: 1px solid var(--border-accent);
 }
 
+.book__price--row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .book__price--normal {
     color: var(--border-accent);
     text-decoration: line-through 2px;
@@ -1140,6 +1146,51 @@ input.books__sorter:focus {
     transform: scale(1.1);
     box-shadow: 0 4px var(--accent-color-bg-dark);
     border: 1px solid var(--accent-color-bg-dark);
+}
+
+/* CART */
+.cart {
+    position: relative;
+}
+
+.cart__badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: var(--accent-color-bg-dark);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: 50%;
+    padding: 3px 5px;
+    min-width: 16px;
+    text-align: center;
+}
+
+.btn__add-to-cart {
+    position: relative;
+    display: inline-flex;
+}
+
+.btn__icon {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn__icon--check {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.btn__icon--visible {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+.btn__icon--hidden {
+    opacity: 0;
+    transform: scale(0.5);
 }
 
 /* ANIMATIONS */
