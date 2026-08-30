@@ -604,6 +604,12 @@ p {
     border: 1px solid var(--border-accent);
 }
 
+.book__price--row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .book__price--normal {
     color: var(--border-accent);
     text-decoration: line-through 2px;
@@ -1142,6 +1148,51 @@ input.books__sorter:focus {
     border: 1px solid var(--accent-color-bg-dark);
 }
 
+/* CART */
+.cart {
+    position: relative;
+}
+
+.cart__badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    background: var(--accent-color-bg-dark);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: 50%;
+    padding: 3px 5px;
+    min-width: 16px;
+    text-align: center;
+}
+
+.btn__add-to-cart {
+    position: relative;
+    display: inline-flex;
+}
+
+.btn__icon {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn__icon--check {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.btn__icon--visible {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+.btn__icon--hidden {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
 /* ANIMATIONS */
 @keyframes glow {
     0% {
@@ -1281,10 +1332,11 @@ input.books__sorter:focus {
         max-width: 240px;
         min-height: 240px;
     }
+
 }
 
 /* TABLET */
-@media (max-width: 980px) {
+@media (max-width: 980px) {  
 
     .book__description {
         max-width: 280px;
@@ -1306,7 +1358,7 @@ input.books__sorter:focus {
         min-height: 240px;
     }
 
-    .book__card {
+    .book__card:not(.book__card--placeholder) {
         max-width: 240px;
         display: block;
     }

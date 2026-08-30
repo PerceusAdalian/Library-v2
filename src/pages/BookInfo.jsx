@@ -2,10 +2,28 @@ import React from 'react'
 import { Link, useParams } from "react-router-dom";
 import { generateRatingStars, PriceDisplay, BookPoster } from "../utils/bookHelpers.jsx";
 import Related from '../components/Related.jsx';
+import { useCart } from "../components/CartContext";
+import { useState } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping, faCheckToSlot } from "@fortawesome/free-solid-svg-icons";
 
 export default function BookInfo({ books }) {
     const { id } = useParams();
     const book = books.find((b) => String(b.id) === id);
+    const { addToCart } = useCart();
+    const [addedIds, setAddedIds] = useState(new Set());
+
+    function handleAddToCart(bookId) {
+        addToCart(bookId, 1);
+        setAddedIds((prev) => new Set(prev).add(bookId));
+        setTimeout(() => {
+            setAddedIds((prev) => {
+                const next = new Set(prev);
+                next.delete(bookId);
+                return next;
+            });
+        }, 750);
+    }
 
     if (!book) {
         return (
@@ -75,7 +93,16 @@ export default function BookInfo({ books }) {
                           </p>
                           <div className="divider"></div>
                           <div className="add-to-cart">
-                            <button className="btn">Add to Cart</button>
+                            <button className="btn btn__add-to-cart" onClick={() => handleAddToCart(book.id)}>
+                              <FontAwesomeIcon
+                                  icon={faCartShopping}
+                                  className={`btn__icon${addedIds.has(book.id) ? " btn__icon--hidden" : ""}`}
+                              />
+                              <FontAwesomeIcon
+                                  icon={faCheckToSlot}
+                                  className={`btn__icon btn__icon--check${addedIds.has(book.id) ? " btn__icon--visible" : ""}`}
+                              />
+                          </button>
                           </div>
                         </div>
                       </div>

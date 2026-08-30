@@ -8,6 +8,7 @@ import { books } from "./data";
 import BookInfo from './pages/BookInfo';
 import ScrollToTop from './components/ScrollToTop';
 import ContactModal from './components/ContactModal';
+import Cart from './pages/Cart';
 
 function BookInfoWithKey({ books }) {
     const { id } = useParams();
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/vault" element={<Vault />} />
           <Route path="/vault/:id" element={<BookInfoWithKey books={books} />} />
+          <Route path="/cart" element={<Cart books={books}/>} />
         </Routes>
         <Footer />
       </div>

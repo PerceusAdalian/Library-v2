@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../components/CartContext";
 
 const Nav = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const { cart } = useCart();
+    const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
     return (
         <nav>
@@ -24,6 +27,9 @@ const Nav = () => {
                         <li><Link to="/vault" className="nav__link nav__link--primary">Vault</Link></li>
                         <Link to="/cart" className="cart">
                             <i className="fa-solid fa-cart-shopping"></i>
+                            {itemCount > 0 && (
+                                <span className="cart__badge">{itemCount}</span>
+                            )}
                         </Link>
                     </ul>
                     
@@ -49,7 +55,12 @@ const Nav = () => {
                                     <Link to="/vault" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Books</Link>
                                 </li>
                                 <li className="menu__list">
-                                    <Link to="/cart" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>Shopping Cart</Link>
+                                    <Link to="/cart" className="menu__link link__hover-effect" onClick={() => setMenuOpen(false)}>
+                                        Shopping Cart
+                                        {itemCount > 0 && (
+                                            <span className="cart__badge">{itemCount}</span>
+                                        )}
+                                    </Link>
                                 </li>
                                 <li className="menu__list">
                                     <a href="#contact" className="menu__link link__hover-effect contact-trigger" onClick={() => setMenuOpen(false)}>Contact</a>
