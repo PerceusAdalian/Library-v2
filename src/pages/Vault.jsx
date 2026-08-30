@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { books as initialBooks } from "../data.js";
-import { generateRatingStars, PriceDisplay, BookPoster } from "../utils/bookHelpers.jsx";
+import { generateRatingStars, PriceDisplay, BookPoster, useSimulatedFetch } from "../utils/bookHelpers.jsx";
 import img from "../assets/404.svg";
 import { Link } from 'react-router-dom';
 
 export default function Vault() {
     const [searchQuery, setSearchQuery] = useState("");
     const [filter, setFilter] = useState("");
-
+    const { data: vaultBooks, isLoading } = useSimulatedFetch(initialBooks, 800);
+    
     function sortBooks(list, filterValue) {
         const sorted = [...list];
 
@@ -45,8 +46,33 @@ export default function Vault() {
         setFilter(event.target.value);
     }
 
-    const displayedBooks = sortBooks(searchBooks(initialBooks, searchQuery), filter);
+    if (isLoading) {
+        return (
+            <div id="books__body">
+                <main id="books__main">
+                    <section id="vault">
+                        <div className="books__container">
+                            <div className="row">
+                                <div className="books">
+                                    {Array.from({ length: 10 }).map((_, i) => (
+                                        <div className="book book__skeleton" key={i}>
+                                            <div className="book__skeleton--poster"></div>
+                                            <div className="book__skeleton--line title"></div>
+                                            <div className="book__skeleton--line rating"></div>
+                                            <div className="book__skeleton--line price"></div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        );
+    }
 
+    const displayedBooks = sortBooks(searchBooks(vaultBooks, searchQuery), filter);
+    
     return (
         <div id="books__body">
             <main id="books__main">

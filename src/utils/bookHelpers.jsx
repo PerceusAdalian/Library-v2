@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function generateRatingStars(rating) {
     const stars = [];
@@ -82,4 +82,21 @@ function shuffle(array) {
         [result[i], result[j]] = [result[j], result[i]];
     }
     return result;
+}
+
+export function useSimulatedFetch(data, delay = 800) {
+    const [isLoading, setIsLoading] = useState(true);
+    const [result, setResult] = useState(null);
+
+    useEffect(() => {
+        setIsLoading(true);
+        const timer = setTimeout(() => {
+            setResult(data);
+            setIsLoading(false);
+        }, delay);
+
+        return () => clearTimeout(timer); // cancel if the component unmounts mid-delay
+    }, [data, delay]);
+
+    return { data: result, isLoading };
 }
