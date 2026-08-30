@@ -25,7 +25,7 @@ const Nav = () => {
                         <li><Link to="/" className="nav__link link__hover-effect">Home</Link></li>
                         <li><a href="#contact" className="nav__link link__hover-effect contact-trigger">Contact</a></li>
                         <li><Link to="/vault" className="nav__link nav__link--primary">Vault</Link></li>
-                        <Link to="/cart" className="cart">
+                        <Link to="/cart" className="cart--logo">
                             <i className="fa-solid fa-cart-shopping"></i>
                             {itemCount > 0 && (
                                 <span className="cart__badge">{itemCount}</span>

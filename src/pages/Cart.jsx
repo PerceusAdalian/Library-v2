@@ -2,6 +2,7 @@ import React from "react";
 import { useCart } from "../components/CartContext";
 import { books } from "../data.js";
 import { PriceDisplay } from "../utils/bookHelpers.jsx";
+import img from "../assets/emptycart.svg";
 
 export default function Cart() {
     const { cart, updateQuantity, removeFromCart } = useCart();
@@ -30,8 +31,10 @@ export default function Cart() {
             <main className="books__main">
                 <div className="books__container">
                     <div className="row">
-                        <div className="book__selected--top">
-                            <h2 className="section__title">Cart</h2>
+                        <div className="book__cart--top">
+                            <div className="book__selected--top">
+                                <h2 className="section__title">Cart</h2>
+                            </div>
                         </div>
 
                         <div className="cart">
@@ -42,7 +45,14 @@ export default function Cart() {
                             </div>
                             <div className="cart__body">
                                 {cartItems.length === 0 ? (
-                                    <p className="cart__empty">Your cart is empty.</p>
+                                    <>
+                                        <div className="cart__empty">
+                                            <p>Your cart is empty.</p>
+                                            <figure>
+                                                <img src={img} alt="Empty Cart" />
+                                            </figure>
+                                        </div>
+                                    </>
                                 ) : (
                                     cartItems.map((book) => (
                                         <div className="cart__item" key={book.id}>

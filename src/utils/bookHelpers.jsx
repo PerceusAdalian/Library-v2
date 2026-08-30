@@ -18,13 +18,14 @@ export function generateRatingStars(rating) {
 export function PriceDisplay({ originalPrice, salePrice }) {
     if (salePrice !== null) {
         return (
-            <>
-                <span className="book__price--normal">${originalPrice.toFixed(2)}</span>{" "}
-                ${salePrice.toFixed(2)} — <em style={{ color: "red", fontWeight: 700 }}>Sale!</em>
-            </>
+            <span className="book__price">
+                <span className="book__price--normal">${originalPrice.toFixed(2)}</span>
+                <span className="book__price--sale">${salePrice.toFixed(2)}</span>
+                <em className="book__price--sale-tag">Sale!</em>
+            </span>
         );
     }
-    return <>${originalPrice.toFixed(2)}</>;
+    return <span className="book__price">${originalPrice.toFixed(2)}</span>;
 }
 
 export function hasValidPoster(img) {
